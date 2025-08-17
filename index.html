@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Календарь</title>
+  <meta name="theme-color" content="#8a8f98" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button id="themeToggle" class="icon-btn" aria-label="Сменить тему">
+      <svg id="sunIcon" viewBox="0 0 24 24" class="icon">
+        <circle cx="12" cy="12" r="5" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="12" y1="1" x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="23"/>
+          <line x1="1" y1="12" x2="4" y2="12"/>
+          <line x1="20" y1="12" x2="23" y2="12"/>
+          <line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/>
+          <line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/>
+          <line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/>
+          <line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/>
+        </g>
+      </svg>
+      <svg id="moonIcon" viewBox="0 0 24 24" class="icon hidden">
+        <defs><clipPath id="moonClip"><circle cx="12" cy="12" r="7.5"/></clipPath></defs>
+        <g clip-path="url(#moonClip)" fill="currentColor">
+          <circle cx="12" cy="12" r="7.5"/>
+          <circle cx="9" cy="10" r="1.2" fill="rgba(255,255,255,.6)"/>
+          <circle cx="14.5" cy="9" r="0.9" fill="rgba(255,255,255,.5)"/>
+          <circle cx="13" cy="14" r="1.5" fill="rgba(255,255,255,.55)"/>
+          <circle cx="8.5" cy="14.5" r="0.8" fill="rgba(255,255,255,.45)"/>
+          <circle cx="16" cy="12" r="0.7" fill="rgba(255,255,255,.5)"/>
+        </g>
+      </svg>
+    </button>
+
+    <div id="monthNav" class="month-nav">
+      <button id="prevMonth" class="nav-btn" aria-label="Предыдущий месяц">
+        <svg viewBox="0 0 24 24" class="icon"><path d="M15 19L8 12l7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="monthLabel" class="month-label" aria-live="polite"></div>
+      <button id="nextMonth" class="nav-btn" aria-label="Следующий месяц">
+        <svg viewBox="0 0 24 24" class="icon"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <button id="menuToggle" class="icon-btn" aria-label="Меню">
+      <svg viewBox="0 0 24 24" class="icon">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="weekdays">
+      <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+    </section>
+    <section id="calendar" class="calendar"></section>
+  </main>
+
+  <div id="scrim" class="scrim" aria-hidden="true"></div>
+  <div id="edgeOpen" class="edge-open" aria-hidden="true"></div>
+
+  <aside id="bottomMenu" class="bottom-menu" aria-hidden="true">
+    <div class="handle"></div>
+    <div class="sheet">
+      <div class="section">
+        <div class="section-title">График</div>
+        <div class="row">
+          <div class="chips" id="patternChips">
+            <button class="chip" data-pattern="dnvv">Д/Н/В/В</button>
+            <button class="chip" data-pattern="2on2off">2/2</button>
+            <button class="chip" data-pattern="5_2">5/2</button>
+            <button class="chip" data-pattern="custom">Свой</button>
+          </div>
+        </div>
+        <div id="customRow" class="row hidden">
+          <input id="customPattern" type="text" placeholder="Напр.: Д,Н,В,В" />
+        </div>
+        <div class="row">
+          <label>Старт цикла</label>
+          <input id="cycleStart" type="date" />
+        </div>
+        <div class="row">
+          <label>Сдвиг</label>
+          <input id="cycleOffset" type="number" min="0" max="365" value="0" />
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Выбор темы</div>
+        <div class="themes" id="themeDots">
+          <button class="dot dot-blue" data-theme="blue" aria-label="Синяя тема"></button>
+          <button class="dot dot-green" data-theme="green" aria-label="Зелёная тема"></button>
+          <button class="dot dot-amber" data-theme="amber" aria-label="Оранжевая тема"></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <button id="applyBtn" class="primary">Применить и сохранить</button>
+      </div>
+
+      <details class="info">
+        <summary>Инфо</summary>
+        <div class="info-body">
+          Приложение «Календарь». Настройки сохраняются локально на устройстве.
+        </div>
+      </details>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>

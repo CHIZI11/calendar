@@ -1,0 +1,31 @@
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:var(--fg);background:var(--bg);transition:background .3s,color .3s}
+:root{--c1:#3b82f6;--c1-weak:color-mix(in oklab,var(--c1) 18%,transparent);--c1-strong:color-mix(in oklab,var(--c1) 70%,transparent)}
+:root.theme-green{--c1:#10b981}:root.theme-amber{--c1:#f59e0b}
+body.light{--bg:#f4f6fa;--fg:#0f172a;--muted:#475569;--card:#fff;--border:rgba(15,23,42,.08);--scrim:rgba(2,6,23,.5)}
+body.dark{--bg:#10131a;--fg:#e5e7eb;--muted:#a1a1aa;--card:#f8fafc;--border:rgba(0,0,0,.08);--scrim:rgba(2,6,23,.5)}
+.topbar{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;padding:10px 12px;background:var(--bg);border-bottom:1px solid var(--border)}
+.icon-btn,.nav-btn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;color:var(--fg);background:transparent;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:background .2s,transform .12s}
+.icon-btn:hover,.nav-btn:hover{background:color-mix(in oklab,var(--c1) 8%,transparent)}.icon{width:22px;height:22px;fill:none;stroke:currentColor}.hidden{display:none}
+.month-nav{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:8px}.month-label{text-align:center;font-weight:800}
+.weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:12px;color:var(--muted);font-weight:700}.weekdays span{text-align:center}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:0 12px 110px}
+.cell{position:relative;display:grid;place-items:center;background:var(--card);border:1px solid var(--border);border-radius:14px;aspect-ratio:1/1}
+.cell .num{position:absolute;top:6px;left:8px;font-size:12px;color:var(--muted);font-weight:800}
+.pill{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;font-weight:900;background:color-mix(in oklab,var(--c1) 15%,transparent);color:var(--c1)}
+.cell.today::after{content:"";position:absolute;width:56px;height:56px;border-radius:50%;box-shadow:0 0 0 3px color-mix(in oklab,var(--c1) 55%,transparent);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%{transform:scale(.95);opacity:.9}50%{transform:scale(1.05);opacity:.6}100%{transform:scale(.95);opacity:.9}}
+.scrim{position:fixed;inset:0;background:transparent;pointer-events:none;transition:background .25s;z-index:40}.scrim.show{background:var(--scrim);pointer-events:auto}
+.edge-open{position:fixed;left:0;right:0;bottom:0;height:22px;z-index:35}
+.bottom-menu{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;background:var(--card);border:1px solid var(--border);border-radius:18px;transform:translateY(calc(100% + 24px));transition:transform .3s cubic-bezier(.2,.8,.2,1);touch-action:none}
+.bottom-menu.open{transform:translateY(0)}.bottom-menu.dragging{transition:none}.handle{width:48px;height:5px;border-radius:3px;background:color-mix(in oklab,var(--fg) 20%,transparent);margin:10px auto}
+.sheet{padding:0 14px 14px}.section{margin-bottom:8px}.section-title{font-weight:800;color:var(--muted);margin:6px 2px}
+.row{display:grid;grid-template-columns:1fr;gap:10px;margin:8px 0}label{color:var(--muted);font-weight:700}
+input[type=date],input[type=text],input[type=number]{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--fg)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:9px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--fg);font-weight:800;cursor:pointer}
+.chip.active{border-color:var(--c1);box-shadow:0 0 0 3px color-mix(in oklab,var(--c1) 25%,transparent)}
+.themes{display:flex;gap:10px;padding:4px 2px 10px}.dot{width:28px;height:28px;border-radius:999px;border:2px solid var(--border);cursor:pointer}
+.dot-blue{background:#3b82f6}.dot-green{background:#10b981}.dot-amber{background:#f59e0b}.dot.active{outline:3px solid color-mix(in oklab,var(--c1) 35%,transparent);outline-offset:2px}
+.primary{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,color-mix(in oklab,var(--c1) 70%,transparent),color-mix(in oklab,var(--c1) 35%,transparent));color:#fff;font-weight:900;cursor:pointer}
+details.info{padding:0 4px}details.info summary{cursor:pointer;color:var(--muted);user-select:none}details.info .info-body{margin-top:8px;color:var(--muted)}
+@media (min-width:640px){.pill{width:48px;height:48px}.cell.today::after{width:60px;height:60px}}
